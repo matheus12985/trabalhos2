@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace SoloLearn
+{
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			int [,] matriz = new int[30, 30];
+			int linha = 0, coluna = 0, menor = int.MaxValue;
+			double media = 0, soma = 0;
+			
+			Random aleatorio = new Random();
+			
+			for(linha = 0; linha < matriz.GetLength(0); linha++)
+			{
+			    for(coluna = 0; coluna < matriz.GetLentgh(1); coluna++)
+			    {
+			        matriz[linha, coluna] = aleatorio.Next(1000, 10000);
+			        
+			        if(matriz[linha, coluna] < menor)
+			        {
+			            menor = matriz[linha, coluna];
+			        }
+			        
+			        if(linha == coluna)
+			        {
+			            soma += matriz[linha, coluna];
+			        }
+			    } 
+			 }
+			 
+			 for (linha = 0; linha < matriz.GetLength(0); linha++)
+			 {
+			     for (coluna = 0; coluna < matriz.GetLength(1); coluna++)
+			     {
+			         Console.Write(matriz[linha, coluna] + "");
+			     }
+			     
+			     Console.Writeline("");
+			 }
+			 
+			    media = soma / 30;
+			    Console.WriteLine("O menor elemento da matriz é: " + menor);
+			    Console.WriteLine("A média dos elementos da diagonal principal é: " + media.ToString("0.00"));
+			    Console.WriteLine("Os elementos onde o produto dos indices é igual a 30 são: ");
+			    for (linha = 0; linha < matriz.GetLength(1); linha++)
+			    {
+			        for (coluna = 0; coluna < matriz.GetLength(1); coluna++)
+			        {
+			            if(linha * coluna == 30)
+			            {
+			                Console.WriteLine(linha + " X " + coluna + "  = 30.");
+			                Console.WriteLine(matriz[linha, coluna]);
+			            }
+			        }
+			    }
+			    
+			    
+			    Console.ReadKey();
+			}
+		}
+	}
+}
